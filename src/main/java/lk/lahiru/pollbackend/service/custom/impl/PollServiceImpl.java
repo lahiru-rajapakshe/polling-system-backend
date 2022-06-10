@@ -1,12 +1,11 @@
 package lk.lahiru.pollbackend.service.custom.impl;
 
-import lk.ijse.dep8.polling.dao.DAOFactory;
-import lk.ijse.dep8.polling.dao.custom.PollDAO;
-import lk.ijse.dep8.polling.dto.PollDTO;
-import lk.ijse.dep8.polling.service.custom.PollService;
-import lk.ijse.dep8.polling.service.exception.NotFoundException;
-import lk.ijse.dep8.polling.service.util.EntityDTOTransformer;
-import lk.ijse.dep8.polling.service.util.JPAUtil;
+
+import lk.lahiru.pollbackend.dao.DAOFactory;
+import lk.lahiru.pollbackend.dao.custom.PollDAO;
+import lk.lahiru.pollbackend.dto.PollDTO;
+import lk.lahiru.pollbackend.service.custom.PollService;
+import lk.lahiru.pollbackend.service.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
