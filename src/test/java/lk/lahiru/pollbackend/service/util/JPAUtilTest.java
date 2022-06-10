@@ -1,11 +1,11 @@
 package lk.lahiru.pollbackend.service.util;
 
 import org.junit.jupiter.api.Test;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class JPAUtilTest {
 
