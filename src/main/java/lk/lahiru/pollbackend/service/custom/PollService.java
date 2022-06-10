@@ -1,7 +1,7 @@
 package lk.lahiru.pollbackend.service.custom;
 
 import lk.lahiru.pollbackend.dto.PollDTO;
-import lk.lahiru.pollbackend.service.util.SuperService;
+import lk.lahiru.pollbackend.service.SuperService;
 
 import java.util.List;
 

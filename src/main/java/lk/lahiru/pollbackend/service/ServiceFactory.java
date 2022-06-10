@@ -1,4 +1,4 @@
-package lk.lahiru.pollbackend.service.util;
+package lk.lahiru.pollbackend.service;
 
 public class ServiceFactory {
 private static ServiceFactory serviceFactory;
