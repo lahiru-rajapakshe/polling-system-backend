@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class POll implements SuperEntity {
+public class Poll implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,4 +23,11 @@ public class POll implements SuperEntity {
     private int downVotes;
     @Column(name = "created_by", nullable = false)
     private String createdBy;
+
+    public Poll(String title, int upVotes, int downVotes, String createdBy) {
+        this.title = title;
+        this.upVotes = upVotes;
+        this.downVotes = downVotes;
+        this.createdBy = createdBy;
+    }
 }
