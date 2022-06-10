@@ -4,18 +4,19 @@ import lk.lahiru.pollbackend.entity.SuperEntity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
-public interface CrudDAO<T extends SuperEntity,ID extends Serializable> extends SuperDAO {
-        ID save(T entity);
+public interface CrudDAO<T extends SuperEntity, ID extends Serializable> extends SuperDAO{
+
+        T save(T entity);
 
         void deleteById(ID pk);
 
-        T findById(ID pk);
+        Optional<T> findById(ID pk);
 
         List<T> findAll();
 
         long count();
 
-        boolean existById();
-
+        boolean existsById(ID pk);
 }

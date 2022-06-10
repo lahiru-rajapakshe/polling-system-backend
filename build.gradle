@@ -41,6 +41,10 @@ dependencies {
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
         testImplementation 'com.h2database:h2:2.1.212'
+
+        // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0-M1'
+
     }
 }
 
