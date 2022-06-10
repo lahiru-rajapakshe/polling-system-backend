@@ -25,7 +25,7 @@ public class PollServlet extends HttpServlet2 {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Post");
+       if(req.getPathInfo() !=null && req.getPathInfo())
     }
 
     @Override
