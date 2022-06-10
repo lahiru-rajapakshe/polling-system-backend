@@ -1,7 +1,8 @@
 package lk.lahiru.pollbackend.service.util;
 
-import lk.ijse.dep8.polling.dto.PollDTO;
-import lk.ijse.dep8.polling.entity.Poll;
+
+import lk.lahiru.pollbackend.dto.PollDTO;
+import lk.lahiru.pollbackend.entity.Poll;
 import org.modelmapper.ModelMapper;
 
 public class EntityDTOTransformer {
