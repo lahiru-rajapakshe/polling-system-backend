@@ -3,9 +3,9 @@ package lk.lahiru.pollbackend.api;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbException;
-import lk.ijse.dep8.polling.dto.PollDTO;
-import lk.ijse.dep8.polling.util.HttpServlet2;
-import lk.ijse.dep8.polling.util.ResponseStatusException;
+import lk.lahiru.pollbackend.dto.PollDTO;
+import lk.lahiru.pollbackend.util.HttpServlet2;
+import lk.lahiru.pollbackend.util.ResponseStatusException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
