@@ -5,6 +5,7 @@ import lk.lahiru.pollbackend.dao.DAOFactory;
 import lk.lahiru.pollbackend.dao.custom.PollDAO;
 import lk.lahiru.pollbackend.dto.PollDTO;
 import lk.lahiru.pollbackend.service.custom.PollService;
+import lk.lahiru.pollbackend.service.exception.NotFoundException;
 import lk.lahiru.pollbackend.service.util.JPAUtil;
 
 import javax.persistence.EntityManager;
