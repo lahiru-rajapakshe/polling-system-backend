@@ -1,6 +1,7 @@
 package lk.lahiru.pollbackend.dao;
 
-import lk.ijse.dep8.polling.dao.custom.impl.PollDAOImpl;
+
+import lk.lahiru.pollbackend.dao.custom.impl.PollDAOImpl;
 
 import javax.persistence.EntityManager;
 
