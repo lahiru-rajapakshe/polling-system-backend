@@ -1,6 +1,6 @@
 package lk.lahiru.pollbackend.dao.custom;
 
-import lk.lahiru.pollbackend.dao.SuperDAO;
+import lk.ijse.dep8.polling.dao.SuperDAO;
 
 public interface QueryDAO extends SuperDAO {
 }

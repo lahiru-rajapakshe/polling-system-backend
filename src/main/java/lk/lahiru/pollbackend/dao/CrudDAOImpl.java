@@ -1,14 +1,12 @@
 package lk.lahiru.pollbackend.dao;
 
-import lk.lahiru.pollbackend.entity.SuperEntity;
+import lk.ijse.dep8.polling.entity.SuperEntity;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
-
 
 public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable> implements CrudDAO<T, ID> {
 
@@ -21,8 +19,7 @@ public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable
 
     @Override
     public T save(T entity) {
-        em.persist(entity);
-        return entity;
+        return em.merge(entity);
     }
 
     @Override

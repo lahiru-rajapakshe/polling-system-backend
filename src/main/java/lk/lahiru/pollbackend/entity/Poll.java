@@ -1,11 +1,10 @@
 package lk.lahiru.pollbackend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +22,11 @@ public class Poll implements SuperEntity {
     private int downVotes;
     @Column(name = "created_by", nullable = false)
     private String createdBy;
+
+    @Setter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "poll", cascade = {CascadeType.REMOVE})
+    private List<Vote> votes = new ArrayList<>();
 
     public Poll(String title, int upVotes, int downVotes, String createdBy) {
         this.title = title;

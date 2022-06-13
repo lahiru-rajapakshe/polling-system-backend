@@ -1,8 +1,9 @@
 package lk.lahiru.pollbackend.dao.custom;
 
-import lk.lahiru.pollbackend.dao.CrudDAO;
-import lk.lahiru.pollbackend.entity.Poll;
+import lk.ijse.dep8.polling.dao.CrudDAO;
+import lk.ijse.dep8.polling.entity.Poll;
 
-public interface PollDAO extends CrudDAO<Poll,Integer> {
+public interface PollDAO extends CrudDAO<Poll, Integer> {
+
 
 }

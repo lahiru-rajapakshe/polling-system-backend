@@ -1,22 +1,22 @@
 package lk.lahiru.pollbackend.dao;
 
-import lk.lahiru.pollbackend.entity.SuperEntity;
+import lk.ijse.dep8.polling.entity.SuperEntity;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudDAO<T extends SuperEntity, ID extends Serializable> extends SuperDAO{
+public interface  CrudDAO<T extends SuperEntity, ID extends Serializable> extends SuperDAO{
 
-        T save(T entity);
+    T save(T entity);
 
-        void deleteById(ID pk);
+    void deleteById(ID pk);
 
-        Optional<T> findById(ID pk);
+    Optional<T> findById(ID pk);
 
-        List<T> findAll();
+    List<T> findAll();
 
-        long count();
+    long count();
 
-        boolean existsById(ID pk);
+    boolean existsById(ID pk);
 }

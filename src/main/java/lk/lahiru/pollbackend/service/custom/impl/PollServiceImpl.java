@@ -2,19 +2,17 @@ package lk.lahiru.pollbackend.service.custom.impl;
 
 import lk.ijse.dep8.polling.dao.DAOFactory;
 import lk.ijse.dep8.polling.dao.custom.PollDAO;
+import lk.ijse.dep8.polling.dao.custom.VoteDAO;
 import lk.ijse.dep8.polling.dto.PollDTO;
+import lk.ijse.dep8.polling.dto.VoteDTO;
+import lk.ijse.dep8.polling.entity.VotePK;
 import lk.ijse.dep8.polling.service.custom.PollService;
 import lk.ijse.dep8.polling.service.exception.NotFoundException;
 import lk.ijse.dep8.polling.service.util.EntityDTOTransformer;
 import lk.ijse.dep8.polling.service.util.JPAUtil;
-import lk.lahiru.pollbackend.dao.DAOFactory;
-import lk.lahiru.pollbackend.dao.custom.PollDAO;
-import lk.lahiru.pollbackend.dto.PollDTO;
-import lk.lahiru.pollbackend.service.exception.NotFoundException;
-import lk.lahiru.pollbackend.service.util.EntityDTOTransformer;
-import lk.lahiru.pollbackend.service.util.JPAUtil;
 
 import javax.persistence.EntityManager;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +23,10 @@ public class PollServiceImpl implements PollService {
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         PollDAO pollDAO = DAOFactory.getInstance().getDAO(em, DAOFactory.DAOType.POLL);
         try {
-            return pollDAO.findAll().stream().map(EntityDTOTransformer::getPollDTO)
+            List<PollDTO> pollDTOList = pollDAO.findAll().stream().map(EntityDTOTransformer::getPollDTO)
                     .collect(Collectors.toList());
+            Collections.sort(pollDTOList);
+            return pollDTOList;
         } finally {
             em.close();
         }
@@ -73,7 +73,7 @@ public class PollServiceImpl implements PollService {
             em.getTransaction().begin();
             pollDAO.save(EntityDTOTransformer.getPoll(dto));
             em.getTransaction().commit();
-        }catch (Throwable t){
+        } catch (Throwable t) {
             if (em != null && em.getTransaction() != null) {
                 em.getTransaction().rollback();
             }
@@ -92,11 +92,46 @@ public class PollServiceImpl implements PollService {
             em.getTransaction().begin();
             pollDAO.deleteById(id);
             em.getTransaction().commit();
-        }catch (Throwable t){
+        } catch (Throwable t) {
             if (em != null && em.getTransaction() != null) {
                 em.getTransaction().rollback();
             }
             throw new RuntimeException("Failed to delete the poll", t);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public VoteDTO getVote(int pollId, String user) throws NotFoundException {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            VoteDAO voteDAO = DAOFactory.getInstance().getDAO(em, DAOFactory.DAOType.VOTE);
+            return voteDAO.findById(new VotePK(pollId, user)).map(EntityDTOTransformer::getVoteDTO)
+                    .orElseThrow(() -> new NotFoundException("No record found for this user and poll id combination"));
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public boolean saveVote(VoteDTO dto) {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            VoteDAO voteDAO = DAOFactory.getInstance().getDAO(em, DAOFactory.DAOType.VOTE);
+            if (!voteDAO.existsById(new VotePK(dto.getPollId(), dto.getUser()))){
+                voteDAO.save(EntityDTOTransformer.getVote(dto));
+               return true;
+            }
+            voteDAO.save(EntityDTOTransformer.getVote(dto));
+            em.getTransaction().commit();
+            return false;
+        } catch (Throwable t) {
+            if (em != null && em.getTransaction() != null) {
+                em.getTransaction().rollback();
+            }
+            throw new RuntimeException("Failed to save the vote", t);
         } finally {
             em.close();
         }
